@@ -42,8 +42,10 @@ class ServiceController extends Controller
             'name' => 'required|min:7',
             'description' => 'required|min:80|max:255',
         ]);
+
         Service::create($validated);
-        return to_route('admin.service.index')->with('message','New Service Added');
+
+        return to_route('admin.service.index')->with('message', 'New Service Added');
     }
 
     /**
@@ -59,7 +61,7 @@ class ServiceController extends Controller
 
     /**
      * Show the form for editing the specified resource.
-    *
+     *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -83,9 +85,10 @@ class ServiceController extends Controller
             'name' => 'required|min:7',
             'description' => 'required|min:80|max:255',
         ]);
+
         $service->update($validated);
+
         return to_route('admin.service.index')->with('message', 'Service Updated');
-        
     }
 
     /**
@@ -97,6 +100,7 @@ class ServiceController extends Controller
     public function destroy(Service $service)
     {
         $service->delete();
-        return back()->with('message','Service Deleted');
+
+        return back()->with('message', 'Service Deleted');
     }
 }

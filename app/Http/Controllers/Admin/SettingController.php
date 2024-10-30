@@ -17,7 +17,7 @@ class SettingController extends Controller
     public function index()
     {
         $setting = Setting::first();
-        // dd($setting);
+
         return view('admin.setting.index', compact('setting'));
     }
 
@@ -43,7 +43,6 @@ class SettingController extends Controller
             'about_photo' => 'image|mimes:jpeg,png,jpg|max:2048'
         ]);
 
-        // $setting = Setting::first();
         if($request->hasfile('image')){
             if($setting->about_photo != null){
                 Storage::delete($setting->about_photo);

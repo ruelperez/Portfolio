@@ -18,7 +18,7 @@ class ReviewController extends Controller
     public function index()
     {
         $reviews = Review::all();
-        return view('admin.review.index',compact('reviews'));
+        return view('admin.review.index', compact('reviews'));
     }
 
     /**
@@ -46,18 +46,14 @@ class ReviewController extends Controller
             'image' => 'image|mimes:jpeg,png,jpg|max:2048'
         ]);
 
-        $review = new Review();
-        $review->name = $validated['name'];
-        $review->job = $validated['job'];
-        $review->description = $validated['description'];
-
-        if($request->hasfile('image')){
+        if ($request->hasfile('image')) {
             $get_file = $request->file('image')->store('images/reviewers');
-            $review->image = $get_file;
+            $validated['image'] = $get_file;
         }
 
-        $review->save();
-        return to_route('admin.review.index')->with('message','Review Added');
+        Review::create($validated);
+
+        return to_route('admin.review.index')->with('message', 'Review Added');
     }
 
     /**
@@ -86,20 +82,17 @@ class ReviewController extends Controller
             'image' => 'image|mimes:jpeg,png,jpg|max:2048'
         ]);
 
-        $review->name = $validated['name'];
-        $review->job = $validated['job'];
-        $review->description = $validated['description'];
-
-        if($request->hasfile('image')){
-            if($review->image != null ){
-            Storage::delete($review->image);
+        if ($request->hasfile('image')) {
+            if ($review->image != null) {
+                Storage::delete($review->image);
             }
             $get_new_file = $request->file('image')->store('images/reviewers');
-            $review->image = $get_new_file;
+            $validated['image'] = $get_new_file;
         }
 
-        $review->update();
-        return to_route('admin.review.index')->with('message','Review Updated');
+        $review->update($validated);
+
+        return to_route('admin.review.index')->with('message', 'Review Updated');
     }
 
     /**
@@ -122,10 +115,11 @@ class ReviewController extends Controller
      */
     public function destroy(Review $review)
     {
-        if($review->image != null){
+        if ($review->image != null) {
             Storage::delete($review->image);
         }
-        $review -> delete();
+        $review->delete();
+
         return back()->with('message', 'Review Deleted');
     }
 }

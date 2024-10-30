@@ -17,8 +17,8 @@ class PortfolioController extends Controller
      */
     public function index()
     {
-        $portfolios= Portfolio::with('category')->get();
-        return view('admin.portfolio.index',compact('portfolios'));
+        $portfolios = Portfolio::with('category')->get();
+        return view('admin.portfolio.index', compact('portfolios'));
     }
 
     /**
@@ -29,7 +29,7 @@ class PortfolioController extends Controller
     public function create()
     {
         $categories = Category::all();
-        return view('admin.portfolio.create',compact('categories'));
+        return view('admin.portfolio.create', compact('categories'));
     }
 
     /**
@@ -47,18 +47,14 @@ class PortfolioController extends Controller
             'cat_id' => 'required|exists:categories,id'
         ]);
 
-        $portfolio = new Portfolio();
-        $portfolio->title = $validated['title'];
-        $portfolio->project_url = $validated['project_url'];
-        $portfolio->cat_id = $request->cat_id;
-
-        if($request->hasfile('image')){
+        if ($request->hasfile('image')) {
             $get_file = $request->file('image')->store('images/portfolios');
-            $portfolio->image = $get_file;
+            $validated['image'] = $get_file;
         }
 
-        $portfolio->save();
-        return to_route('admin.portfolio.index')->with('message','Portfolio Added');
+        Portfolio::create($validated);
+
+        return to_route('admin.portfolio.index')->with('message', 'Portfolio Added');
     }
 
 
@@ -71,7 +67,8 @@ class PortfolioController extends Controller
     public function edit(Portfolio $portfolio)
     {
         $categories = Category::all();
-        return view('admin.portfolio.edit', compact('portfolio','categories'));
+
+        return view('admin.portfolio.edit', compact('portfolio', 'categories'));
     }
 
     /**
@@ -86,21 +83,19 @@ class PortfolioController extends Controller
         $validated = $request->validate([
             'title' => 'required|min:4',
             'project_url' => 'required',
-            'image' => 'image|mimes:jpeg,png,jpg|max:2048'
+            'image' => 'image|mimes:jpeg,png,jpg|max:2048',
+            'cat_id' => 'required|exists:categories,id'
         ]);
 
-        $portfolio->title = $validated['title'];
-        $portfolio->project_url = $validated['project_url'];
-        $portfolio->cat_id = $request->cat_id;
-
-        if($request->hasfile('image')){
+        if ($request->hasfile('image')) {
             Storage::delete($portfolio->image);
             $get_file = $request->file('image')->store('images/portfolios');
-            $portfolio->image = $get_file;
+            $validated['image'] = $get_file;
         }
 
-        $portfolio->update();
-        return to_route('admin.portfolio.index')->with('message','Portfolio Updated');
+        $portfolio->update($validated);
+
+        return to_route('admin.portfolio.index')->with('message', 'Portfolio Updated');
     }
 
     /**
@@ -111,10 +106,10 @@ class PortfolioController extends Controller
      */
     public function destroy(Portfolio $portfolio)
     {
-        if($portfolio->image != null){
+        if ($portfolio->image != null) {
             Storage::delete($portfolio->image);
         }
-        $portfolio -> delete();
+        $portfolio->delete();
         return back()->with('message', 'Portfolio Deleted');
     }
 
@@ -123,13 +118,12 @@ class PortfolioController extends Controller
         $searchedItem = $request->input('search');
 
         $portfolios = Portfolio::query()
-        ->where('title', 'LIKE', "%{$searchedItem}%")
-        ->orWhere('project_url', 'LIKE', "%{$searchedItem}%")
-        ->get();
+            ->where('title', 'LIKE', "%{$searchedItem}%")
+            ->orWhere('project_url', 'LIKE', "%{$searchedItem}%")
+            ->get();
 
 
-    // Return the search view with the resluts compacted
-    return view('admin.portfolio.search', compact('portfolios'));
-
+        // Return the search view with the resluts compacted
+        return view('admin.portfolio.search', compact('portfolios'));
     }
 }

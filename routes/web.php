@@ -28,22 +28,25 @@ use Illuminate\Support\Facades\Route;
 */
 
 // Front-End Routes
-Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/', HomeController::class)->name('home');
 Route::post('/contact', [ContactController::class, 'submit'])->name('contact');
 
 //Admin Panel
-Route::middleware(['auth','isAdmin'])->name('admin.')->prefix('/admin')->group(function(){
+Route::middleware(['auth', 'isAdmin'])->name('admin.')->prefix('/admin')->group(function () {
     Route::get('/', [AdminController::class, 'index'])->name('index');
-    Route::get('/qualification/education', [QualificationController::class,'showEducation'])->name('qualification.edu');
-    Route::get('/qualification/experience', [QualificationController::class,'showExperience'])->name('qualification.exp');
+    Route::get('/qualification/education', [QualificationController::class, 'showEducation'])->name('qualification.edu');
+    Route::get('/qualification/experience', [QualificationController::class, 'showExperience'])->name('qualification.exp');
     Route::resource('/qualification', QualificationController::class);
     Route::resource('/skill', SkillController::class);
     Route::resource('/service', ServiceController::class);
     Route::resource('/review', ReviewController::class);
     Route::resource('/category', CategoryController::class);
-    Route::get('/portfolio/search', [PortfolioController::class,'search'])->name('portfolio.search');
+    Route::get('/portfolio/search', [PortfolioController::class, 'search'])->name('portfolio.search');
     Route::resource('/portfolio', PortfolioController::class);
-    Route::resource('/aboutme', AboutmeController::class);
+    Route::prefix('/aboutme')->controller(AboutmeController::class)->group(function () {
+        Route::get('/', 'index')->name('aboutme.index');
+        Route::put('/{user}', 'update')->name('aboutme.update');
+    });
     Route::resource('/setting', SettingController::class);
 });
 

@@ -16,6 +16,7 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::all();
+        
         return view('admin.category.index', compact('categories'));
     }
 
@@ -37,10 +38,10 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $validated = $request->validate(['name'=> ['required','min:3']]);
+        $validated = $request->validate(['name' => ['required', 'string', 'min:3', 'max:255']]);
         Category::create($validated);
 
-        return to_route('admin.category.index')->with('message','New Category Added');
+        return to_route('admin.category.index')->with('message', 'New Category Added');
     }
 
     /**
@@ -61,11 +62,12 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category){
-        $validated = $request->validate(['name'=> ['required','min:3']]);
+    public function update(Request $request, Category $category)
+    {
+        $validated = $request->validate(['name' =>  ['required','string', 'min:3', 'max:255']]);
         $category->update($validated);
 
-        return to_route('admin.category.index')->with('message','Category Updated');
+        return to_route('admin.category.index')->with('message', 'Category Updated');
     }
 
     /**
@@ -77,6 +79,7 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         $category->delete();
+
         return to_route('admin.category.index')->with('message', 'Category Deleted');
     }
 }

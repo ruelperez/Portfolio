@@ -9,18 +9,25 @@ use Illuminate\Support\Facades\Mail;
 
 class ContactController extends Controller
 {
-    public function submit(Request $request){
+    public function submit(Request $request)
+    {
 
-         $request->validate([
-            'name' => 'required|min:4',
-            'subject_mail' => 'required|min:4',
-            'email' => 'required|email',
-            'content' => 'required|min:4',
+        $request->validate([
+            'name' => 'required|min:4|max:255',
+            'subject_mail' => 'required|min:4|max:255',
+            'email' => 'required|email|max:255',
+            'content' => 'required|min:4|max:1000',
         ]);
-        $contact_email = Setting::select('contact_mail')->where('id',1)->first();
-        Mail::to($contact_email->contact_mail)->send(new ContactMail($request->name, $request->email, $request->subject_mail, $request->content));
-        // Mail::to('hjhj@nn.com')->send(new ContactMail($request->name, $request->email, $request->subject_mail, $request->content));
-        // Mail::to("zz@xx.com")->send(new ContactMail('nnn','e@z.com','bla bla','bla bla bla bla'));
-        return to_route('home')->with('message','Message sent sucessfully !');
+
+        $contact_email = Setting::select('contact_mail')->first()->value('contact_mail');
+
+        Mail::to($contact_email)->send(new ContactMail(
+            $request->name,
+            $request->email,
+            $request->subject_mail,
+            $request->content
+        ));
+
+        return to_route('home')->with('message', 'Message sent sucessfully !');
     }
 }
