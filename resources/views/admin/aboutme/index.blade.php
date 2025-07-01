@@ -28,7 +28,7 @@
                         Name <span style="color:red">*</span>
                     </label>
                     <div class="col-sm-9">
-                      <input type="text" class="form-control" name="name" value="{{$user->name}}"/>
+                      <input type="text" class="form-control" name="name" value="{{$user->name}}" placeholder="John Doe"/>
                     </div>
                   </div>
                 </div>
@@ -38,7 +38,7 @@
                         Email <span style="color:red">*</span>
                     </label>
                     <div class="col-sm-9">
-                      <input type="text" class="form-control" name="email" value="{{$user->email}}"/>
+                      <input type="text" class="form-control" name="email" value="{{$user->email}}" placeholder="email@exa.ple" />
                     </div>
                   </div>
                 </div>
@@ -50,7 +50,7 @@
                         Phone <span style="color:red">*</span>
                     </label>
                     <div class="col-sm-9">
-                      <input type="text" class="form-control" name="phone" value="{{$user->phone}}"/>
+                      <input type="text" class="form-control" name="phone" value="{{$user->phone}}"  placeholder="+201012345678"  />
                     </div>
                   </div>
                 </div>
@@ -60,7 +60,7 @@
                         Address <span style="color:red">*</span>
                     </label>
                     <div class="col-sm-9">
-                      <input type="text" class="form-control" name="address" value="{{$user->address}}"/>
+                      <input type="text" class="form-control" name="address" value="{{$user->address}}"  placeholder="Cairo, Egypet" />
                     </div>
                   </div>
                 </div>
@@ -72,7 +72,7 @@
                         Job <span style="color:red">*</span>
                     </label>
                     <div class="col-sm-9">
-                      <input type="text" class="form-control" name="job" value="{{$user->job}}"/>
+                      <input type="text" class="form-control" name="job" value="{{$user->job}}" placeholder="Senior software developer at xyz" />
                     </div>
                   </div>
                 </div>
@@ -81,6 +81,8 @@
                         <label class="col-sm-3 col-form-label">
                           Degree <span style="color:red">*</span>
                         </label>
+                        <div class="col-sm-9">
+                      <input type="text" class="form-control" name="degree" value="{{$user->degree}}" placeholder="Senior, phd, BCS, ..." />
                     </div>
                   </div>
                 </div>
@@ -92,7 +94,7 @@
                             Experience <span style="color:red">*</span>
                         </label>
                     <div class="col-sm-9">
-                      <input type="text" class="form-control" name="experience" value="{{$user->experience}}"/>
+                      <input type="text" class="form-control" name="experience" value="{{$user->experience}}" placeholder="+5 yox"/>
                     </div>
                   </div>
                 </div>
@@ -102,7 +104,7 @@
                           Birth Day <span style="color:red">*</span>
                     </label>
                     <div class="col-sm-9">
-                      <input type="text" class="form-control" name="birth_day" value="{{ $user->birth_day}}" />
+                      <input type="text" class="form-control" name="birth_day" value="{{ $user->birth_day}}" placeholder="yyyy-mm-dd" />
                     </div>
                   </div>
                 </div>
