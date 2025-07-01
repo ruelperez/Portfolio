@@ -1,7 +1,7 @@
 @extends('admin.layouts.admin')
 
 @section('content')
-{{-- 
+{{--
 <div class="main-panel">
     <div class="content-wrapper"> --}}
       <div class="col-12">
@@ -24,7 +24,9 @@
               <div class="row">
                 <div class="col-md-6">
                   <div class="form-group row">
-                    <label class="col-sm-3 col-form-label">Name</label>
+                    <label class="col-sm-3 col-form-label">
+                        Name <span style="color:red">*</span>
+                    </label>
                     <div class="col-sm-9">
                       <input type="text" class="form-control" name="name" value="{{$user->name}}"/>
                     </div>
@@ -32,7 +34,9 @@
                 </div>
                 <div class="col-md-6">
                   <div class="form-group row">
-                    <label class="col-sm-3 col-form-label">Email</label>
+                    <label class="col-sm-3 col-form-label">
+                        Email <span style="color:red">*</span>
+                    </label>
                     <div class="col-sm-9">
                       <input type="text" class="form-control" name="email" value="{{$user->email}}"/>
                     </div>
@@ -42,7 +46,9 @@
               <div class="row">
                 <div class="col-md-6">
                   <div class="form-group row">
-                    <label class="col-sm-3 col-form-label">Phone</label>
+                    <label class="col-sm-3 col-form-label">
+                        Phone <span style="color:red">*</span>
+                    </label>
                     <div class="col-sm-9">
                       <input type="text" class="form-control" name="phone" value="{{$user->phone}}"/>
                     </div>
@@ -50,7 +56,9 @@
                 </div>
                 <div class="col-md-6">
                   <div class="form-group row">
-                    <label class="col-sm-3 col-form-label">Address</label>
+                    <label class="col-sm-3 col-form-label">
+                        Address <span style="color:red">*</span>
+                    </label>
                     <div class="col-sm-9">
                       <input type="text" class="form-control" name="address" value="{{$user->address}}"/>
                     </div>
@@ -60,7 +68,9 @@
               <div class="row">
                 <div class="col-md-6">
                   <div class="form-group row">
-                    <label class="col-sm-3 col-form-label">Job</label>
+                    <label class="col-sm-3 col-form-label">
+                        Job <span style="color:red">*</span>
+                    </label>
                     <div class="col-sm-9">
                       <input type="text" class="form-control" name="job" value="{{$user->job}}"/>
                     </div>
@@ -68,9 +78,9 @@
                 </div>
                 <div class="col-md-6">
                   <div class="form-group row">
-                    <label class="col-sm-3 col-form-label">Degree</label>
-                    <div class="col-sm-9">
-                      <input type="text" class="form-control" name="degree" value="{{$user->degree}}" />
+                        <label class="col-sm-3 col-form-label">
+                          Degree <span style="color:red">*</span>
+                        </label>
                     </div>
                   </div>
                 </div>
@@ -78,7 +88,9 @@
               <div class="row">
                 <div class="col-md-6">
                   <div class="form-group row">
-                    <label class="col-sm-3 col-form-label">Experience</label>
+                        <label class="col-sm-3 col-form-label">
+                            Experience <span style="color:red">*</span>
+                        </label>
                     <div class="col-sm-9">
                       <input type="text" class="form-control" name="experience" value="{{$user->experience}}"/>
                     </div>
@@ -86,7 +98,9 @@
                 </div>
                 <div class="col-md-6">
                   <div class="form-group row">
-                    <label class="col-sm-3 col-form-label">Birth Day</label>
+                    <label class="col-sm-3 col-form-label">
+                          Birth Day <span style="color:red">*</span>
+                    </label>
                     <div class="col-sm-9">
                       <input type="text" class="form-control" name="birth_day" value="{{ $user->birth_day}}" />
                     </div>
