@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Service;
-use Illuminate\Http\Request;
+use App\Http\Requests\Admin\ServiceRequest;
 
 class ServiceController extends Controller
 {
@@ -32,31 +32,14 @@ class ServiceController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\Admin\ServiceRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ServiceRequest $request)
     {
-        $validated = $request->validate([
-            'icon' => 'required',
-            'name' => 'required|min:7',
-            'description' => 'required|min:80|max:255',
-        ]);
-
-        Service::create($validated);
+        Service::create($request->validated());
 
         return to_route('admin.service.index')->with('message', 'New Service Added');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
     }
 
     /**
@@ -73,20 +56,13 @@ class ServiceController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\Admin\ServiceRequest  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Service $service)
+    public function update(ServiceRequest $request, Service $service)
     {
-
-        $validated = $request->validate([
-            'icon' => 'required',
-            'name' => 'required|min:7',
-            'description' => 'required|min:80|max:255',
-        ]);
-
-        $service->update($validated);
+        $service->update($request->validated());
 
         return to_route('admin.service.index')->with('message', 'Service Updated');
     }

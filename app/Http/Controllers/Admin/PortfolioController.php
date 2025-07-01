@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Portfolio;
+use App\Http\Requests\Admin\PortfolioRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -35,17 +36,12 @@ class PortfolioController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\Admin\PortfolioRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PortfolioRequest $request)
     {
-        $validated = $request->validate([
-            'title' => 'required|min:4',
-            'project_url' => 'required',
-            'image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
-            'cat_id' => 'required|exists:categories,id'
-        ]);
+        $validated = $request->validated();
 
         if ($request->hasfile('image')) {
             $get_file = $request->file('image')->store('images/portfolios');
@@ -74,18 +70,13 @@ class PortfolioController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\Admin\PortfolioRequest  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Portfolio $portfolio)
+    public function update(PortfolioRequest $request, Portfolio $portfolio)
     {
-        $validated = $request->validate([
-            'title' => 'required|min:4',
-            'project_url' => 'required',
-            'image' => 'image|mimes:jpeg,png,jpg|max:2048',
-            'cat_id' => 'required|exists:categories,id'
-        ]);
+        $validated = $request->validated();
 
         if ($request->hasfile('image')) {
             Storage::delete($portfolio->image);
