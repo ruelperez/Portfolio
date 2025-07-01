@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
-use Illuminate\Http\Request;
+use App\Http\Requests\Admin\CategoryRequest;
 
 class CategoryController extends Controller
 {
@@ -16,6 +16,7 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::all();
+        
         return view('admin.category.index', compact('categories'));
     }
 
@@ -32,15 +33,14 @@ class CategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\Admin\CategoryRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CategoryRequest $request)
     {
-        $validated = $request->validate(['name'=> ['required','min:3']]);
-        Category::create($validated);
+        Category::create($request->validated());
 
-        return to_route('admin.category.index')->with('message','New Category Added');
+        return to_route('admin.category.index')->with('message', 'New Category Added');
     }
 
     /**
@@ -57,15 +57,15 @@ class CategoryController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\Admin\CategoryRequest  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category){
-        $validated = $request->validate(['name'=> ['required','min:3']]);
-        $category->update($validated);
+    public function update(CategoryRequest $request, Category $category)
+    {
+        $category->update($request->validated());
 
-        return to_route('admin.category.index')->with('message','Category Updated');
+        return to_route('admin.category.index')->with('message', 'Category Updated');
     }
 
     /**
@@ -77,6 +77,7 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         $category->delete();
+
         return to_route('admin.category.index')->with('message', 'Category Deleted');
     }
 }

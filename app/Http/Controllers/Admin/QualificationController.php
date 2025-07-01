@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Qualification;
+use App\Http\Requests\Admin\QualificationRequest;
 use Illuminate\Http\Request;
 
 class QualificationController extends Controller
@@ -15,18 +16,18 @@ class QualificationController extends Controller
      */
     public function showEducation()
     {
-        $educations = Qualification::where('type',['Education'])->orderBy('id')->get();
-        return view('admin.qualification.edu',compact('educations'));
+        $educations = Qualification::where('type', ['Education'])->orderBy('id')->get();
+        return view('admin.qualification.edu', compact('educations'));
     }
 
     public function showExperience()
     {
-        $experiences = Qualification::where('type',['Work'])->orderBy('id')->get();
+        $experiences = Qualification::where('type', ['Work'])->orderBy('id')->get();
         return view('admin.qualification.exp', compact('experiences'));
     }
 
     public function index()
-{
+    {
         $qualifications = Qualification::all();
         return view('admin.qualification.index', compact('qualifications'));
     }
@@ -37,42 +38,20 @@ class QualificationController extends Controller
      */
     public function create()
     {
-
         return view('admin.qualification.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\Admin\QualificationRequest  $request
      * @return \Illuminate\Http\Response
-     *     
-     */
-    public function store(Request $request)
-    {
-        $validated = $request->validate([
-            'title' => 'required|min:3',
-            'association' => 'required|min:3',
-            'description' => 'required|min:3',
-            'type'=> 'required',
-            'from'=> 'required|min:4',
-            'to'=> 'required|min:4'
-        ]);
-                // dd($validated);
-
-        Qualification::create($validated);
-        return to_route('admin.qualification.edu')->with('message','New Qualification Added');
-    }
-
-    /**
-     * Display the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function store(QualificationRequest $request)
     {
-        //
+        Qualification::create($request->validated());
+        return to_route('admin.qualification.edu')->with('message', 'New Qualification Added');
     }
 
     /**
@@ -89,27 +68,18 @@ class QualificationController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\Admin\QualificationRequest  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Qualification $qualification)
+    public function update(QualificationRequest $request, Qualification $qualification)
     {
-        $validated = $request->validate([
-            'title' => 'required|min:3',
-            'association' => 'required|min:3',
-            'description' => 'required|min:3',
-            'type'=> 'required',
-            'from'=> 'required|min:4',
-            'to'=> 'required|min:4'
-        ]);
-                // dd($validated);
+        $qualification->update($request->validated());
 
-        $qualification->update($validated);
-        if($request['type']== 'Education'){
-            return to_route('admin.qualification.edu')->with('message','Education Updated');
-        }else{
-            return to_route('admin.qualification.exp')->with('message','Experience Updated');
+        if ($request['type'] == 'Education') {
+            return to_route('admin.qualification.edu')->with('message', 'Education Updated');
+        } else {
+            return to_route('admin.qualification.exp')->with('message', 'Experience Updated');
         }
     }
 
@@ -121,7 +91,8 @@ class QualificationController extends Controller
      */
     public function destroy(Qualification $qualification)
     {
-        $qualification -> delete();
+        $qualification->delete();
+
         return back()->with('message', 'Qualification Deleted');
     }
 }

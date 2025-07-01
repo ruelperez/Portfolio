@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Skill;
-use Illuminate\Http\Request;
+use App\Http\Requests\Admin\SkillRequest;
 
 class SkillController extends Controller
 {
@@ -16,6 +16,7 @@ class SkillController extends Controller
     public function index()
     {
         $skills = Skill::all();
+        
         return view('admin.skill.index', compact('skills'));
     }
 
@@ -27,35 +28,19 @@ class SkillController extends Controller
     public function create()
     {
         return view('admin.skill.create');
-
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\Admin\SkillRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SkillRequest $request)
     {
-        $validated = $request->validate([
-            'name' => 'required|min:3',
-            'color' => 'required|min:7',
-            'percent' => 'required|numeric|gt:0|lte:100',
-        ]);
-        Skill::create($validated);
-        return to_route('admin.skill.index')->with('message','New skill Added');
-    }
+        Skill::create($request->validated());
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+        return to_route('admin.skill.index')->with('message', 'New skill Added');
     }
 
     /**
@@ -72,20 +57,15 @@ class SkillController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\Admin\SkillRequest  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Skill $skill)
+    public function update(SkillRequest $request, Skill $skill)
     {
-        $validated = $request->validate([
-            'name' => 'required|min:3',
-            'color' => 'required|min:7',
-            'percent' => 'required|numeric|gt:0|lte:100',
-        ]);
-        $skill-> update($validated);
-        return to_route('admin.skill.index')->with('message', 'Skill Updated');
+        $skill->update($request->validated());
 
+        return to_route('admin.skill.index')->with('message', 'Skill Updated');
     }
 
     /**
@@ -96,7 +76,8 @@ class SkillController extends Controller
      */
     public function destroy(Skill $skill)
     {
-        $skill -> delete();
+        $skill->delete();
+
         return back()->with('message', 'Skill Deleted');
     }
 }

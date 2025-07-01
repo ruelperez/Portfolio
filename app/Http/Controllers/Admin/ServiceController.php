@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Service;
-use Illuminate\Http\Request;
+use App\Http\Requests\Admin\ServiceRequest;
 
 class ServiceController extends Controller
 {
@@ -32,34 +32,19 @@ class ServiceController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\Admin\ServiceRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ServiceRequest $request)
     {
-        $validated = $request->validate([
-            'icon' => 'required',
-            'name' => 'required|min:7',
-            'description' => 'required|min:80|max:255',
-        ]);
-        Service::create($validated);
-        return to_route('admin.service.index')->with('message','New Service Added');
-    }
+        Service::create($request->validated());
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+        return to_route('admin.service.index')->with('message', 'New Service Added');
     }
 
     /**
      * Show the form for editing the specified resource.
-    *
+     *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -71,21 +56,15 @@ class ServiceController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\Admin\ServiceRequest  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Service $service)
+    public function update(ServiceRequest $request, Service $service)
     {
+        $service->update($request->validated());
 
-        $validated = $request->validate([
-            'icon' => 'required',
-            'name' => 'required|min:7',
-            'description' => 'required|min:80|max:255',
-        ]);
-        $service->update($validated);
         return to_route('admin.service.index')->with('message', 'Service Updated');
-        
     }
 
     /**
@@ -97,6 +76,7 @@ class ServiceController extends Controller
     public function destroy(Service $service)
     {
         $service->delete();
-        return back()->with('message','Service Deleted');
+
+        return back()->with('message', 'Service Deleted');
     }
 }
