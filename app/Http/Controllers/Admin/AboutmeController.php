@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UpdateUserInfoRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -28,19 +29,9 @@ class AboutmeController extends Controller
         return view('admin.aboutme.index', compact('user'));
     }
 
-    public function update(Request $request, User $user)
+    public function update(UpdateUserInfoRequest $request, User $user)
     {
-        $validated = $request->validate([
-            'name' => 'required|min:3',
-            'email' => 'required|email',
-            'phone' => 'required',
-            'address' => 'required',
-            'degree' => 'required',
-            'experience' => 'required',
-            'birth_day' => 'required|date',
-            'job' => 'required',
-            'image' => 'image|mimes:jpeg,png,jpg|max:2048',
-        ]);
+        $validated = $request->validated();
 
         if ($request->hasfile('image')) {
             $get_new_file = $request->file('image')->store('images');
