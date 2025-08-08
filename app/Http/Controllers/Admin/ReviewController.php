@@ -76,7 +76,7 @@ class ReviewController extends Controller
             if ($review->image != null) {
                 Storage::delete($review->image);
             }
-            $get_new_file = $request->file('image')->store('images/reviewers');
+            $get_new_file = $request->file('image')->store('images/reviewers','public');
             $validated['image'] = $get_new_file;
         }
 
