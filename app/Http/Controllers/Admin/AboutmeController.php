@@ -33,9 +33,8 @@ class AboutmeController extends Controller
     {
         $validated = $request->validated();
 
-        if ($request->hasFile('image')) {
-            // Store in storage/app/public/images
-            $get_new_file = $request->file('image')->store('images', 'public');
+        if ($request->hasfile('image')) {
+            $get_new_file = $request->file('image')->store('images');
             $validated['profile_pic'] = $get_new_file;
         }
 
@@ -43,5 +42,4 @@ class AboutmeController extends Controller
 
         return to_route('admin.aboutme.index')->with('message', 'Data Updated');
     }
-
 }

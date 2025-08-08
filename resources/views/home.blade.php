@@ -22,7 +22,7 @@
 
 
     <!-- Header Start -->
-    <div class="container-fluid bg-dark d-flex align-items-center mb-3 py-5" id="home" style="min-height: 100vh;">
+    <div class="container-fluid bg-primary d-flex align-items-center mb-5 py-5" id="home" style="min-height: 100vh;">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-5 px-5 pl-lg-0 pb-5 pb-lg-0">
@@ -30,16 +30,16 @@
                 </div>
                 <div class="col-lg-7 text-center text-lg-left">
                     <h3 class="text-white font-weight-normal mb-3">I'm</h3>
-                    <h1 class="display-3 text-uppercase text-dark mb-2" style="-webkit-text-stroke: 2px #ffffff;">{{ $user?->name }}</h1>
-                    <h1 class="typed-text-output d-inline font-weight-lighter text-primary"></h1>
+                    <h1 class="display-3 text-uppercase text-primary mb-2" style="-webkit-text-stroke: 2px #ffffff;">{{ $user?->name }}</h1>
+                    <h1 class="typed-text-output d-inline font-weight-lighter text-white"></h1>
                     <div class="typed-text d-none">{{ $user?->job }}</div>
                     <div class="d-flex align-items-center justify-content-center justify-content-lg-start pt-5">
                         <a href="{{ $setting->cv_url }}" class="btn btn-outline-light mr-5">Download CV</a>
-{{--                        <button type="button" class="btn-play" data-toggle="modal"--}}
-{{--                            data-src="{{$setting->video_url }}" data-target="#videoModal">--}}
-{{--                            <span></span>--}}
-{{--                        </button>--}}
-{{--                        <h5 class="font-weight-normal text-white m-0 ml-4 d-none d-sm-block">Play Video</h5>--}}
+                        <button type="button" class="btn-play" data-toggle="modal"
+                            data-src="{{$setting->video_url }}" data-target="#videoModal">
+                            <span></span>
+                        </button>
+                        <h5 class="font-weight-normal text-white m-0 ml-4 d-none d-sm-block">Play Video</h5>
                     </div>
                 </div>
             </div>
@@ -49,10 +49,10 @@
 
 
     <!-- About Start -->
-    <div class="container-fluid py-5 bg-dark" id="about">
+    <div class="container-fluid py-5" id="about">
         <div class="container">
             <div class="position-relative d-flex align-items-center justify-content-center">
-                <h1 class="display-1 text-uppercase" style="-webkit-text-stroke: 1px black;">About</h1>
+                <h1 class="display-1 text-uppercase text-white" style="-webkit-text-stroke: 1px #dee2e6;">About</h1>
                 <h1 class="position-absolute text-uppercase text-primary">About Me</h1>
             </div>
             <div class="row align-items-center">
@@ -60,17 +60,17 @@
                     <img class="img-fluid rounded w-100" src="{{ asset("storage/$setting->about_photo") }}" alt="">
                 </div>
                 <div class="col-lg-7">
-                    <h3 class="mb-4 text-white-50">{{ $setting->about_title }}</h3>
+                    <h3 class="mb-4">{{ $setting->about_title }}</h3>
                     <p>{{ $setting->about_description }}</p>
                     <div class="row mb-3">
-                        <div class="col-sm-6 py-2"><h6 class="text-secondary">Name: <span class="text-secondary">{{ $user?->name }}</span></h6></div>
-                        <div class="col-sm-6 py-2"><h6 class="text-secondary">Birthday: <span class="text-secondary">{{ $user?->birth_day }}</span></h6></div>
-                        <div class="col-sm-6 py-2"><h6 class="text-secondary">Degree: <span class="text-secondary">{{ $user?->degree }}</span></h6></div>
-                        <div class="col-sm-6 py-2"><h6 class="text-secondary">Experience: <span class="text-secondary">{{ $user?->experience }} Years</span></h6></div>
-                        <div class="col-sm-6 py-2"><h6 class="text-secondary">Phone: <span class="text-secondary">{{ $user?->phone }}</span></h6></div>
-                        <div class="col-sm-6 py-2"><h6 class="text-secondary">Email: <span class="text-secondary">{{ $user?->email }}</span></h6></div>
-                        <div class="col-sm-6 py-2"><h6 class="text-secondary">Address: <span class="text-secondary">{{ $user?->address }}</span></h6></div>
-                        <div class="col-sm-6 py-2"><h6 class="text-secondary">Freelance: <span class="text-secondary">Available</span></h6></div>
+                        <div class="col-sm-6 py-2"><h6>Name: <span class="text-secondary">{{ $user?->name }}</span></h6></div>
+                        <div class="col-sm-6 py-2"><h6>Birthday: <span class="text-secondary">{{ $user?->birth_day }}</span></h6></div>
+                        <div class="col-sm-6 py-2"><h6>Degree: <span class="text-secondary">{{ $user?->degree }}</span></h6></div>
+                        <div class="col-sm-6 py-2"><h6>Experience: <span class="text-secondary">{{ $user?->experience }} Years</span></h6></div>
+                        <div class="col-sm-6 py-2"><h6>Phone: <span class="text-secondary">{{ $user?->phone }}</span></h6></div>
+                        <div class="col-sm-6 py-2"><h6>Email: <span class="text-secondary">{{ $user?->email }}</span></h6></div>
+                        <div class="col-sm-6 py-2"><h6>Address: <span class="text-secondary">{{ $user?->address }}</span></h6></div>
+                        <div class="col-sm-6 py-2"><h6>Freelance: <span class="text-secondary">Available</span></h6></div>
                     </div>
                     <a href="{{ $setting->freelance_url }}" class="btn btn-outline-primary mr-4">Hire Me</a>
                     {{-- <a href="" class="btn btn-outline-primary">Learn More</a> --}}
@@ -82,19 +82,19 @@
 
 
     <!-- Qualification Start -->
-    <div class="container-fluid bg-dark py-5" id="qualification">
+    <div class="container-fluid py-5" id="qualification">
         <div class="container">
             <div class="position-relative d-flex align-items-center justify-content-center">
-                <h1 class="display-1 text-uppercase" style="-webkit-text-stroke: 1px black;">Quality</h1>
+                <h1 class="display-1 text-uppercase text-white" style="-webkit-text-stroke: 1px #dee2e6;">Quality</h1>
                 <h1 class="position-absolute text-uppercase text-primary">Education & Expericence</h1>
             </div>
             <div class="row align-items-center">
                 <div class="col-lg-6">
-                    <h3 class="mb-4 text-white-50">My Education</h3>
+                    <h3 class="mb-4">My Education</h3>
                     <div class="border-left border-primary pt-2 pl-4 ml-2">
                         @foreach ($educations as $education)
                         <div class="position-relative mb-4">
-                            <i class="far fa-dot-circle text-primary position-absolute " style="top: 2px; left: -32px;"></i>
+                            <i class="far fa-dot-circle text-primary position-absolute" style="top: 2px; left: -32px;"></i>
                             <h5 class="font-weight-bold mb-1">{{ $education->title }}</h5>
                             <p class="mb-2"><strong>{{ $education->association }}</strong> | <small>{{ $education->from }} - {{ $education->to }}</small></p>
                             <p>{{ $education->description }} </p>
@@ -103,7 +103,7 @@
                     </div>
                 </div>
                 <div class="col-lg-6">
-                    <h3 class="mb-4 text-white-50">My Expericence</h3>
+                    <h3 class="mb-4">My Expericence</h3>
                     <div class="border-left border-primary pt-2 pl-4 ml-2">
                         @foreach ($experiences as $experience)
                         <div class="position-relative mb-4">
@@ -122,44 +122,39 @@
 
 
     <!-- Skill Start -->
-    <div class="container-fluid py-5 bg-dark" id="skill">
+    <div class="container-fluid py-5" id="skill">
         <div class="container">
             <div class="position-relative d-flex align-items-center justify-content-center">
-                <h1 class="display-1 text-uppercase" style="-webkit-text-stroke: 1px black;">Skills</h1>
+                <h1 class="display-1 text-uppercase text-white" style="-webkit-text-stroke: 1px #dee2e6;">Skills</h1>
                 <h1 class="position-absolute text-uppercase text-primary">My Skills</h1>
             </div>
-            @php
-                $groups = max(1, (int) ceil($skills->count() / 3));
-            @endphp
-
             <div class="row align-items-center">
-                @foreach($skills->split($groups) as $row)
-                    <div class="col-md-6">
-                        @foreach($row as $skill)
-                            <div class="skill mb-4">
-                                <div class="d-flex justify-content-between">
-                                    <h6 class="font-weight-bold text-secondary">{{ $skill->name }}</h6>
-                                    <h6 class="font-weight-bold">{{ $skill->percent }}%</h6>
-                                </div>
-                                <div class="progress">
-                                    <div class="progress-bar" role="progressbar" aria-valuenow="{{ $skill->percent }}" aria-valuemin="0" aria-valuemax="100" style="background-color: {{ $skill->color }}"></div>
-                                </div>
-                            </div>
-                        @endforeach
+                @foreach($skills->split($skills->count()/3) as $row)
+                <div class="col-md-6">
+                    @foreach($row as $skill)
+                    <div class="skill mb-4">
+                        <div class="d-flex justify-content-between">
+                            <h6 class="font-weight-bold">{{ $skill->name }}</h6>
+                            <h6 class="font-weight-bold">{{$skill->percent}}%</h6>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" aria-valuenow="{{$skill->percent}}" aria-valuemin="0" aria-valuemax="100" style="background-color: {{$skill->color}}"></div>
+                        </div>
                     </div>
+                    @endforeach
+                </div>
                 @endforeach
             </div>
-
         </div>
     </div>
     <!-- Skill End -->
 
 
     <!-- Services Start -->
-    <div class="container-fluid bg-dark pt-5" id="service">
+    <div class="container-fluid pt-5" id="service">
         <div class="container">
             <div class="position-relative d-flex align-items-center justify-content-center">
-                <h1 class="display-1 text-uppercase" style="-webkit-text-stroke: 1px black;">Service</h1>
+                <h1 class="display-1 text-uppercase text-white" style="-webkit-text-stroke: 1px #dee2e6;">Service</h1>
                 <h1 class="position-absolute text-uppercase text-primary">My Services</h1>
             </div>
             <div class="row pb-3">
@@ -179,10 +174,10 @@
 
 
     <!-- Portfolio Start -->
-    <div class="container-fluid bg-dark pt-5 pb-3" id="portfolio">
+    <div class="container-fluid pt-5 pb-3" id="portfolio">
         <div class="container">
             <div class="position-relative d-flex align-items-center justify-content-center">
-                <h1 class="display-1 text-uppercase" style="-webkit-text-stroke: 1px black;">Gallery</h1>
+                <h1 class="display-1 text-uppercase text-white" style="-webkit-text-stroke: 1px #dee2e6;">Gallery</h1>
                 <h1 class="position-absolute text-uppercase text-primary">My Portfolio</h1>
             </div>
             <div class="row">
@@ -218,10 +213,10 @@
 
 
     <!-- Testimonial Start -->
-    <div class="container-fluid py-5 bg-dark" id="testimonial">
+    <div class="container-fluid py-5" id="testimonial">
         <div class="container">
             <div class="position-relative d-flex align-items-center justify-content-center">
-                <h1 class="display-1 text-uppercase" style="-webkit-text-stroke: 1px black;">Review</h1>
+                <h1 class="display-1 text-uppercase text-white" style="-webkit-text-stroke: 1px #dee2e6;">Review</h1>
                 <h1 class="position-absolute text-uppercase text-primary">Clients Say</h1>
             </div>
             <div class="row justify-content-center">
@@ -244,10 +239,10 @@
     <!-- Testimonial End -->
 
     <!-- Contact Start -->
-    <div class="container-fluid py-5 bg-dark" id="contact">
+    <div class="container-fluid py-5" id="contact">
         <div class="container">
             <div class="position-relative d-flex align-items-center justify-content-center">
-                <h1 class="display-1 text-uppercase" style="-webkit-text-stroke: 1px black;">Contact</h1>
+                <h1 class="display-1 text-uppercase text-white" style="-webkit-text-stroke: 1px #dee2e6;">Contact</h1>
                 <h1 class="position-absolute text-uppercase text-primary">Contact Me</h1>
             </div>
             <div class="row justify-content-center">
@@ -307,7 +302,7 @@
 
 
     <!-- Footer Start -->
-    <div class="container-fluid bg-dark text-secondary mt-3 py-5 px-sm-3 px-md-5">
+    <div class="container-fluid bg-primary text-white mt-5 py-5 px-sm-3 px-md-5">
         <div class="container text-center py-5">
             <div class="d-flex justify-content-center mb-4">
                 <a class="btn btn-light btn-social mr-2" href="{{ $setting->github_url }}"><i class="fab fa-github"></i></a>
@@ -315,22 +310,22 @@
                 <a class="btn btn-light btn-social mr-2" href="{{ $setting->linkedin_url }}"><i class="fab fa-linkedin-in"></i></a>
             </div>
             <div class="d-flex justify-content-center mb-3">
-                <a class="text-secondary" href="#">Privacy</a>
+                <a class="text-white" href="#">Privacy</a>
                 <span class="px-3">|</span>
-                <a class="text-secondary" href="#">Terms</a>
+                <a class="text-white" href="#">Terms</a>
                 <span class="px-3">|</span>
-                <a class="text-secondary" href="#">FAQs</a>
+                <a class="text-white" href="#">FAQs</a>
                 <span class="px-3">|</span>
-                <a class="text-secondary" href="#">Help</a>
+                <a class="text-white" href="#">Help</a>
             </div>
-            <p class="m-0">&copy; <a class="text-secondary font-weight-bold" href="#">Domain Name</a>. All Rights Reserved. Designed by <a class="text-secondary font-weight-bold" href="https://htmlcodex.com">HTML Codex</a>
+            <p class="m-0">&copy; <a class="text-white font-weight-bold" href="#">Domain Name</a>. All Rights Reserved. Designed by <a class="text-white font-weight-bold" href="https://htmlcodex.com">HTML Codex</a>
             </p>
         </div>
     </div>
     <!-- Footer End -->
 
     <!-- Scroll to Bottom -->
-    <i class="fa fa-2x fa-angle-down text-secondary scroll-to-bottom"></i>
+    <i class="fa fa-2x fa-angle-down text-white scroll-to-bottom"></i>
 
     <!-- Back to Top -->
     <a href="#" class="btn btn-outline-dark px-0 back-to-top"><i class="fa fa-angle-double-up"></i></a>
