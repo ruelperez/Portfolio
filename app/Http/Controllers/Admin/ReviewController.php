@@ -41,7 +41,7 @@ class ReviewController extends Controller
         $validated = $request->validated();
 
         if ($request->hasfile('image')) {
-            $get_file = $request->file('image')->store('images/reviewers');
+            $get_file = $request->file('image')->store('images/reviewers','public');
             $validated['image'] = $get_file;
         }
 

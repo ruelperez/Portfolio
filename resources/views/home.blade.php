@@ -95,8 +95,8 @@
                         @foreach ($educations as $education)
                         <div class="position-relative mb-4">
                             <i class="far fa-dot-circle text-primary position-absolute " style="top: 2px; left: -32px;"></i>
-                            <h5 class="font-weight-bold mb-1">{{ $education->title }}</h5>
-                            <p class="mb-2"><strong>{{ $education->association }}</strong> | <small>{{ $education->from }} - {{ $education->to }}</small></p>
+                            <h5 class="font-weight-bold mb-1 text-white-50">{{ $education->title }}</h5>
+                            <p class="mb-2 text-white-50"><strong>{{ $education->association }}</strong> | <small>{{ $education->from }} - {{ $education->to }}</small></p>
                             <p>{{ $education->description }} </p>
                         </div>
                         @endforeach
@@ -108,8 +108,8 @@
                         @foreach ($experiences as $experience)
                         <div class="position-relative mb-4">
                             <i class="far fa-dot-circle text-primary position-absolute" style="top: 2px; left: -32px;"></i>
-                            <h5 class="font-weight-bold mb-1">{{ $experience->title }}</h5>
-                            <p class="mb-2"><strong>{{ $experience->association }}</strong> | <small>{{ $experience->from }} - {{ $experience->to }}</small></p>
+                            <h5 class="font-weight-bold mb-1 text-white-50">{{ $experience->title }}</h5>
+                            <p class="mb-2 text-white-50"><strong>{{ $experience->association }}</strong> | <small>{{ $experience->from }} - {{ $experience->to }}</small></p>
                             <p>{{ $experience->description }}</p>
                         </div>
                         @endforeach
@@ -138,8 +138,8 @@
                         @foreach($row as $skill)
                             <div class="skill mb-4">
                                 <div class="d-flex justify-content-between">
-                                    <h6 class="font-weight-bold text-secondary">{{ $skill->name }}</h6>
-                                    <h6 class="font-weight-bold">{{ $skill->percent }}%</h6>
+                                    <h6 class="font-weight-bold text-white-50">{{ $skill->name }}</h6>
+                                    <h6 class="font-weight-bold text-white-50">{{ $skill->percent }}%</h6>
                                 </div>
                                 <div class="progress">
                                     <div class="progress-bar" role="progressbar" aria-valuenow="{{ $skill->percent }}" aria-valuemin="0" aria-valuemax="100" style="background-color: {{ $skill->color }}"></div>
@@ -167,7 +167,7 @@
                 <div class="col-lg-4 col-md-6 text-center mb-5">
                     <div class="d-flex align-items-center justify-content-center mb-4">
                         <i class="{{ $service->icon }} service-icon bg-primary text-white mr-3"></i>
-                        <h4 class="font-weight-bold m-0">{{ $service->name }}</h4>
+                        <h4 class="font-weight-bold m-0 text-white-50">{{ $service->name }}</h4>
                     </div>
                     <p>{{ $service->description }}</p>
                 </div>
@@ -188,28 +188,32 @@
             <div class="row">
                 <div class="col-12 text-center mb-2">
                     <ul class="list-inline mb-4" id="portfolio-flters">
-                        <li class="btn btn-sm btn-outline-primary m-1 active"  data-filter="*">All</li>
+                        <li class="btn btn-sm btn-outline-primary m-1 active" data-filter="*">All</li>
                         @foreach ($categories as $category)
-                        <li class="btn btn-sm btn-outline-primary m-1" data-filter=".{{$category->name}}">{{ $category->name }}</li>
+                            <li class="btn btn-sm btn-outline-primary m-1"
+                                data-filter=".{{ Str::slug($category->name) }}">
+                                {{ $category->name }}
+                            </li>
                         @endforeach
                     </ul>
                 </div>
             </div>
+
             <div class="row portfolio-container">
                 @foreach ($portfolios as $portfolio)
-                <div class="col-lg-4 col-md-6 mb-4 portfolio-item {{$portfolio->category->name }}">
-                    <div class="position-relative overflow-hidden mb-2">
-                        <img class="img-fluid rounded w-100" src="{{ asset("storage/$portfolio->image") }}" alt="">
-                        <div class="portfolio-btn bg-primary d-flex align-items-center justify-content-center">
-                            <a href="{{ asset("storage/$portfolio->image") }}" data-lightbox="portfolio">
-                                <i class="fa fa-plus text-white" style="font-size: 50px;"></i>
-                            </a>
-                            <a href="{{ $portfolio->project_url }}" data-lightbox="portfolio">
-                                <i class="fa-solid fa-link text-white" style="margin-left:20px; font-size: 50px;"></i>
-                            </a>
+                    <div class="col-lg-4 col-md-6 mb-4 portfolio-item {{ Str::slug($portfolio->category->name) }}">
+                        <div class="position-relative overflow-hidden mb-2">
+                            <img class="img-fluid rounded w-100" src="{{ asset("storage/$portfolio->image") }}" alt="">
+                            <div class="portfolio-btn bg-primary d-flex align-items-center justify-content-center">
+                                <a href="{{ asset("storage/$portfolio->image") }}" data-lightbox="portfolio">
+                                    <i class="fa fa-plus text-white" style="font-size: 50px;"></i>
+                                </a>
+                                <a href="{{ $portfolio->project_url }}" target="_blank">
+                                    <i class="fa-solid fa-link text-white" style="margin-left:20px; font-size: 50px;"></i>
+                                </a>
+                            </div>
                         </div>
                     </div>
-                </div>
                 @endforeach
             </div>
         </div>
@@ -230,10 +234,10 @@
                         @foreach ($reviewers as $review)
                         <div class="text-center">
                             <i class="fa fa-3x fa-quote-left text-primary mb-4"></i>
-                            <h4 class="font-weight-light mb-4">{{ $review->description }}</h4>
+                            <h4 class="font-weight-light mb-4 text-white-50">{{ $review->description }}</h4>
                             <img class="img-fluid rounded-circle mx-auto mb-3" src="{{ asset("storage/$review->image") }}" style="width: 80px; height: 80px;">
-                            <h5 class="font-weight-bold m-0">{{ $review->name }} </h5>
-                            <span>{{ $review->job }}</span>
+                            <h5 class="font-weight-bold m-0 text-white-50">{{ $review->name }} </h5>
+                            <span class="text-white-50">{{ $review->job }}</span>
                         </div>
                     @endforeach
                     </div>
@@ -254,9 +258,14 @@
                 <div class="col-lg-8">
                     <div class="contact-form text-center">
                         @if (Session::has('message'))
-                        <div class="alert alert-primary" role="alert">
-                          {{ Session::get('message') }}
-                        </div>
+                            <script>
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Success',
+                                    text: '{{ session('message') }}',
+                                    confirmButtonText: 'OK'
+                                });
+                            </script>
                         <br>
                         @endif
                         <form id="contactForm" method="POST" action="{{ route('contact') }}">
@@ -323,7 +332,7 @@
                 <span class="px-3">|</span>
                 <a class="text-secondary" href="#">Help</a>
             </div>
-            <p class="m-0">&copy; <a class="text-secondary font-weight-bold" href="#">Domain Name</a>. All Rights Reserved. Designed by <a class="text-secondary font-weight-bold" href="https://htmlcodex.com">HTML Codex</a>
+            <p class="m-0">&copy; <a class="text-secondary font-weight-bold" href="#">Domain Name</a>. All Rights Reserved.
             </p>
         </div>
     </div>

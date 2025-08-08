@@ -33,11 +33,11 @@ class HomeController extends Controller
         $experiences = Qualification::where('type', ['Work'])->orderBy('id', 'desc')->take(3)->get();
         $educations = Qualification::where('type', ['Education'])->orderBy('id', 'desc')->take(3)->get();
 
-        $skills = Skill::orderBy('id', 'desc')->take(6)->get();
+        $skills = Skill::orderBy('id', 'desc')->take(11)->get();
         $services = Service::take(6)->get();
         $categories = Category::all();
         $reviewers = Review::orderBy('id', 'desc')->take(5)->get();
-        $portfolios = Portfolio::with('category')->orderBy('id', 'desc')->take(6)->get();
+        $portfolios = Portfolio::with('category')->orderBy('id', 'desc')->take(12)->get();
         $setting = Setting::first();
 
         return view('home', compact(

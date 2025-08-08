@@ -80,7 +80,7 @@ class PortfolioController extends Controller
 
         if ($request->hasfile('image')) {
             Storage::delete($portfolio->image);
-            $get_file = $request->file('image')->store('images/portfolios');
+            $get_file = $request->file('image')->store('images/portfolios', 'public');
             $validated['image'] = $get_file;
         }
 
