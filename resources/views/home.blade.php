@@ -34,7 +34,7 @@
                     <h1 class="typed-text-output d-inline font-weight-lighter text-primary"></h1>
                     <div class="typed-text d-none">{{ $user?->job }}</div>
                     <div class="d-flex align-items-center justify-content-center justify-content-lg-start pt-5">
-                        <a href="{{ $setting->cv_url }}" class="btn btn-outline-light mr-5">Download CV</a>
+{{--                        <a href="{{ $setting->cv_url }}" class="btn btn-outline-light mr-5">Download CV</a>--}}
 {{--                        <button type="button" class="btn-play" data-toggle="modal"--}}
 {{--                            data-src="{{$setting->video_url }}" data-target="#videoModal">--}}
 {{--                            <span></span>--}}
