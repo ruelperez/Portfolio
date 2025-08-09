@@ -23,4 +23,5 @@ class ContactController extends Controller
 
         return to_route('home')->with('message', 'Message sent sucessfully !');
     }
+
 }

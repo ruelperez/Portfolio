@@ -48,6 +48,7 @@
                 <a href="#portfolio" class="nav-item nav-link">Portfolio</a>
                 <a href="#testimonial" class="nav-item nav-link">Review</a>
                 <a href="#contact" class="nav-item nav-link">Contact</a>
+                <a href="/write-review" class="nav-item nav-link">Write a Review</a>
             </div>
             <a href="" class="btn btn-outline-primary d-none d-lg-block">Hire Me</a>
         </div>
