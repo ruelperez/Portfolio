@@ -33,15 +33,20 @@
                     <h1 class="display-3 text-uppercase text-dark mb-2" style="-webkit-text-stroke: 2px #ffffff;">{{ $user?->name }}</h1>
                     <h1 class="typed-text-output d-inline font-weight-lighter text-primary"></h1>
                     <div class="typed-text d-none">{{ $user?->job }}</div>
-                    <div class="d-flex align-items-center justify-content-center justify-content-lg-start pt-5 text-small">
-                        <a href="#portfolio" class="btn btn-primary px-3"><i class="fa-solid fa-list-check" style="margin-right: 7px;"></i>PROJECTS</a>
-                        <a href="#contact" class="btn text-white-50"><i class="fa-regular fa-message" style="margin-right: 7px;"></i>CONTACT ME</a>
-{{--                        <button type="button" class="btn-play" data-toggle="modal"--}}
-{{--                            data-src="{{$setting->video_url }}" data-target="#videoModal">--}}
-{{--                            <span></span>--}}
-{{--                        </button>--}}
-{{--                        <h5 class="font-weight-normal text-white m-0 ml-4 d-none d-sm-block">Play Video</h5>--}}
+                    <div class="d-flex flex-column flex-lg-row align-items-center justify-content-center justify-content-lg-start pt-5 text-small">
+                        <div class="d-flex">
+                            <a href="#portfolio" class="btn btn-primary px-3 me-2">
+                                <i class="fa-solid fa-list-check" style="margin-right: 7px;"></i>PROJECTS
+                            </a>
+                            <a href="#contact" class="btn text-white-50 me-2">
+                                <i class="fa-regular fa-message" style="margin-right: 7px;"></i>CONTACT ME
+                            </a>
+                        </div>
+                        <a href="#write-review" class="btn text-white-50 mt-2 mt-lg-0 ms-lg-2">
+                            <i class="fa-regular fa-pen-to-square" style="margin-right: 7px;"></i>WRITE A REVIEW
+                        </a>
                     </div>
+
                 </div>
             </div>
         </div>
