@@ -35,7 +35,7 @@
                     <div class="typed-text d-none">{{ $user?->job }}</div>
                     <div class="d-flex align-items-center justify-content-center justify-content-lg-start pt-5 text-small">
                         <a href="#portfolio" class="btn btn-primary px-3"><i class="fa-solid fa-list-check" style="margin-right: 7px;"></i>PROJECTS</a>
-                        <a href="#portfolio" class="btn text-white-50"><i class="fa-regular fa-message" style="margin-right: 7px;"></i>CONTACT ME</a>
+                        <a href="#contact" class="btn text-white-50"><i class="fa-regular fa-message" style="margin-right: 7px;"></i>CONTACT ME</a>
 {{--                        <button type="button" class="btn-play" data-toggle="modal"--}}
 {{--                            data-src="{{$setting->video_url }}" data-target="#videoModal">--}}
 {{--                            <span></span>--}}
