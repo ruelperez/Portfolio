@@ -282,7 +282,7 @@
                                 </div>
 
                                 <div>
-                                    <button class="btn btn-outline-primary" type="submit" id="sendMessageButton">Send Message</button>
+                                    <button class="btn btn-outline-primary" type="submit" id="sendMessageButton">Send Review</button>
                                 </div>
 
                                 @if ($errors->any())
