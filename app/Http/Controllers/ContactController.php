@@ -62,7 +62,7 @@ class ContactController extends Controller
                     'description' => $request->message,
                 ]);
             }
-            return to_route('home')->with('message', 'Message sent sucessfully !');
+            return to_route('home')->with('message', 'Review sent sucessfully. Thank You!');
         }catch (\Exception $e){
             return to_route('home')->with('failed', 'Failed to send !');
         }
