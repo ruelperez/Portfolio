@@ -333,7 +333,7 @@
                 <span class="px-3">|</span>
                 <a class="text-secondary" href="#">Help</a>
             </div>
-            <p class="m-0">&copy; <a class="text-secondary font-weight-bold" href="#">Domain Name</a>. All Rights Reserved.
+            <p class="m-0">&copy; <a class="text-secondary font-weight-bold" href="#">ruel-dev.site</a>. All Rights Reserved.
             </p>
         </div>
     </div>
