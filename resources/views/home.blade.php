@@ -33,8 +33,9 @@
                     <h1 class="display-3 text-uppercase text-dark mb-2" style="-webkit-text-stroke: 2px #ffffff;">{{ $user?->name }}</h1>
                     <h1 class="typed-text-output d-inline font-weight-lighter text-primary"></h1>
                     <div class="typed-text d-none">{{ $user?->job }}</div>
-                    <div class="d-flex align-items-center justify-content-center justify-content-lg-start pt-5">
-{{--                        <a href="{{ $setting->cv_url }}" class="btn btn-outline-light mr-5">Download CV</a>--}}
+                    <div class="d-flex align-items-center justify-content-center justify-content-lg-start pt-5 text-small">
+                        <a href="#portfolio" class="btn btn-primary px-3"><i class="fa-solid fa-list-check" style="margin-right: 7px;"></i>PROJECTS</a>
+                        <a href="#portfolio" class="btn text-white-50"><i class="fa-regular fa-message" style="margin-right: 7px;"></i>CONTACT ME</a>
 {{--                        <button type="button" class="btn-play" data-toggle="modal"--}}
 {{--                            data-src="{{$setting->video_url }}" data-target="#videoModal">--}}
 {{--                            <span></span>--}}
@@ -183,7 +184,7 @@
         <div class="container">
             <div class="position-relative d-flex align-items-center justify-content-center">
                 <h1 class="display-1 text-uppercase" style="-webkit-text-stroke: 1px black;">Gallery</h1>
-                <h1 class="position-absolute text-uppercase text-primary">My Portfolio</h1>
+                <h1 class="position-absolute text-uppercase text-primary">My Project</h1>
             </div>
             <div class="row">
                 <div class="col-12 text-center mb-2">
@@ -226,7 +227,7 @@
         <div class="container">
             <div class="position-relative d-flex align-items-center justify-content-center">
                 <h1 class="display-1 text-uppercase" style="-webkit-text-stroke: 1px black;">Review</h1>
-                <h1 class="position-absolute text-uppercase text-primary">Clients Say</h1>
+                <h1 class="position-absolute text-uppercase text-primary">Client Testimonials</h1>
             </div>
             <div class="row justify-content-center">
                 <div class="col-lg-8">

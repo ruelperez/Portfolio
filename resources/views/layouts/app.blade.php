@@ -43,10 +43,10 @@
                 <a href="#home" class="nav-item nav-link active">Home</a>
                 <a href="#about" class="nav-item nav-link">About</a>
                 <a href="#qualification" class="nav-item nav-link">Quality</a>
-                <a href="#skill" class="nav-item nav-link">Skill</a>
-                <a href="#service" class="nav-item nav-link">Service</a>
-                <a href="#portfolio" class="nav-item nav-link">Portfolio</a>
-                <a href="#testimonial" class="nav-item nav-link">Review</a>
+                <a href="#skill" class="nav-item nav-link">Skills</a>
+                <a href="#service" class="nav-item nav-link">Services</a>
+                <a href="#portfolio" class="nav-item nav-link">Projects</a>
+                <a href="#testimonial" class="nav-item nav-link">Reviews</a>
                 <a href="#contact" class="nav-item nav-link">Contact</a>
                 <a href="/write-review" class="nav-item nav-link">Write a Review</a>
             </div>
