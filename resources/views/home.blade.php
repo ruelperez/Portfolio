@@ -248,6 +248,97 @@
     </div>
     <!-- Testimonial End -->
 
+    <div class="container-fluid py-5 bg-dark" id="write-review">
+        <div class="container">
+            <div class="position-relative d-flex align-items-center justify-content-center">
+                <h1 class="display-1 text-uppercase" style="-webkit-text-stroke: 1px black;">Review</h1>
+                <h1 class="position-absolute text-primary">Write a Review</h1>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="contact-form text-center">
+                            <form id="contactForm" method="POST" action="{{ route('review') }}" enctype="multipart/form-data">
+                                @csrf
+                                <div class="form-row">
+                                    <div class="control-group col-sm-6 mb-3">
+                                        <input type="text" class="form-control" id="review_name" name="name" placeholder="Your Name" required>
+                                    </div>
+                                    <div class="control-group col-sm-6 mb-3">
+                                        <input type="text" class="form-control" id="review_job" name="job" placeholder="Your Job" required>
+                                    </div>
+                                </div>
+
+                                <div class="control-group mb-3">
+                                    <label for="review_profile_pic" class="text-white">Profile Picture (optional)</label>
+                                    <input type="file" class="form-control" id="review_profile_pic" name="pic" accept="image/*">
+                                    <small class="form-text text-light">Max file size: 2MB | JPG, PNG only</small>
+                                    <div class="mt-2">
+                                        <img id="previewImage" src="" alt="Preview" class="img-thumbnail d-none" style="max-width: 150px;">
+                                    </div>
+                                </div>
+
+                                <div class="control-group mb-3">
+                                    <textarea class="form-control" id="review_message" name="message" rows="4" placeholder="Review Message" required></textarea>
+                                </div>
+
+                                <div>
+                                    <button class="btn btn-outline-primary" type="submit" id="sendMessageButton">Send Message</button>
+                                </div>
+
+                                @if ($errors->any())
+                                    <br>
+                                    <div class="alert alert-danger">
+                                        <ul>
+                                            @foreach ($errors->all() as $error)
+                                                <li>{{ $error }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                @endif
+                            </form>
+
+                            <script>
+                                document.getElementById('review_profile_pic').addEventListener('change', function (event) {
+                                    const file = event.target.files[0];
+                                    const preview = document.getElementById('previewImage');
+
+                                    if (file) {
+                                        // Validate file type
+                                        const allowedTypes = ['image/jpeg', 'image/png'];
+                                        if (!allowedTypes.includes(file.type)) {
+                                            alert('Only JPG and PNG images are allowed.');
+                                            this.value = '';
+                                            preview.classList.add('d-none');
+                                            return;
+                                        }
+
+                                        // Validate file size (max 2MB)
+                                        if (file.size > 2 * 1024 * 1024) {
+                                            alert('Image size must be less than 2MB.');
+                                            this.value = '';
+                                            preview.classList.add('d-none');
+                                            return;
+                                        }
+
+                                        // Show preview
+                                        const reader = new FileReader();
+                                        reader.onload = function (e) {
+                                            preview.src = e.target.result;
+                                            preview.classList.remove('d-none');
+                                        };
+                                        reader.readAsDataURL(file);
+                                    } else {
+                                        preview.classList.add('d-none');
+                                    }
+                                });
+                            </script>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Contact Start -->
     <div class="container-fluid py-5 bg-dark" id="contact">
         <div class="container">
@@ -258,17 +349,6 @@
             <div class="row justify-content-center">
                 <div class="col-lg-8">
                     <div class="contact-form text-center">
-                        @if (Session::has('message'))
-                            <script>
-                                Swal.fire({
-                                    icon: 'success',
-                                    title: 'Success',
-                                    text: '{{ session('message') }}',
-                                    confirmButtonText: 'OK'
-                                });
-                            </script>
-                        <br>
-                        @endif
                         <form id="contactForm" method="POST" action="{{ route('contact') }}">
                             @csrf
                             <div class="form-row">
@@ -344,5 +424,26 @@
 
     <!-- Back to Top -->
     <a href="#" class="btn btn-outline-dark px-0 back-to-top"><i class="fa fa-angle-double-up"></i></a>
-
+    @if (Session::has('message'))
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Success',
+                text: '{{ session('message') }}',
+                confirmButtonText: 'OK'
+            });
+        </script>
+        <br>
+    @endif
+    @if (Session::has('failed'))
+        <script>
+            Swal.fire({
+                icon: 'error',
+                title: 'Failed',
+                text: '{{ session('failed') }}',
+                confirmButtonText: 'OK'
+            });
+        </script>
+        <br>
+    @endif
 @endsection
