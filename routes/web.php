@@ -41,6 +41,7 @@ Route::middleware(['auth', 'isAdmin'])->name('admin.')->prefix('/admin')->group(
     Route::resource('/skill', SkillController::class);
     Route::resource('/service', ServiceController::class);
     Route::resource('/review', ReviewController::class);
+    Route::resource('/messages', \App\Http\Controllers\MessageController::class);
     Route::resource('/category', CategoryController::class);
     Route::get('/portfolio/search', [PortfolioController::class, 'search'])->name('portfolio.search');
     Route::resource('/portfolio', PortfolioController::class);

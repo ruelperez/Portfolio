@@ -64,6 +64,12 @@
                 <i class="mdi mdi-home menu-icon"></i>
               </a>
             </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="{{ route('admin.messages.index')}}">
+                      <span class="menu-title">Messages</span>
+                      <i class="mdi mdi-home menu-icon"></i>
+                  </a>
+              </li>
             <li class="nav-item">
               <a class="nav-link" href="{{ route('admin.aboutme.index')}}">
                 <span class="menu-title">Aboutme</span>
