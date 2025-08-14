@@ -50,7 +50,7 @@
                 <a href="#contact" class="nav-item nav-link">Contact</a>
                 <a href="#write-review" class="nav-item nav-link">Write a Review</a>
             </div>
-            <a href="#contact" class="btn btn-outline-primary d-none d-lg-block">Hire Me</a>
+            <a href="https://drive.google.com/file/d/1aUw3E7MY8yEOD4oK_r7lXH1iI-abKE7L/view?usp=sharing" class="btn btn-outline-primary d-none d-lg-block">Hire Me</a>
         </div>
     </nav>
     <!-- Navbar End -->
