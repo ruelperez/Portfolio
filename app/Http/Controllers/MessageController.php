@@ -9,7 +9,7 @@ class MessageController extends Controller
 {
     public function index()
     {
-        $messages = Message::all();
+        $messages = Message::latest()->get(); // Orders by 'created_at' descending by default
         return view('admin.messages.index', compact('messages'));
     }
 
