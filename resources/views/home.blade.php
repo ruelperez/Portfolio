@@ -33,19 +33,29 @@
                     <h1 class="display-3 text-uppercase text-dark mb-2" style="-webkit-text-stroke: 2px #ffffff;">{{ $user?->name }}</h1>
                     <h1 class="typed-text-output d-inline font-weight-lighter text-primary"></h1>
                     <div class="typed-text d-none">{{ $user?->job }}</div>
-                    <div class="d-flex flex-column flex-lg-row align-items-center justify-content-center justify-content-lg-start pt-5 text-small">
-                        <div class="d-flex">
-                            <a href="#portfolio" class="btn btn-primary px-3 me-2">
-                                <i class="fa-solid fa-list-check" style="margin-right: 7px;"></i>PROJECTS
-                            </a>
-                            <a href="#contact" class="btn text-white-50 me-2">
-                                <i class="fa-regular fa-message" style="margin-right: 7px;"></i>CONTACT ME
-                            </a>
-                        </div>
-                        <a href="#write-review" class="btn text-white-50 mt-2 mt-lg-0 ms-lg-2">
-                            <i class="fa-regular fa-pen-to-square" style="margin-right: 7px;"></i>WRITE A REVIEW
+                    <div class="d-flex flex-column flex-md-row align-items-center justify-content-center pt-5 text-small flex-wrap">
+
+                        <a href="#portfolio" class="btn btn-primary px-3 me-0 me-md-2 mb-2 mb-md-0">
+                            <i class="fa-solid fa-list-check" style="margin-right: 8px;"></i>PROJECTS
                         </a>
+
+                        <a href="#contact" class="btn text-white-50 me-0 me-md-2 mb-2 mb-md-0">
+                            <i class="fa-regular fa-message" style="margin-right: 8px;"></i>CONTACT ME
+                        </a>
+
+                        <a href="#write-review" class="btn text-white-50 me-0 me-md-2 mb-2 mb-md-0">
+                            <i class="fa-regular fa-pen-to-square" style="margin-right: 8px;"></i>WRITE A REVIEW
+                        </a>
+
+                        <a href="{{ $setting->freelance_url }}" class="btn text-white-50 mb-2 mb-md-0">
+                            <i class="fa-solid fa-download" style="margin-right: 8px;"></i>DOWNLOAD CV
+                        </a>
+
                     </div>
+
+
+
+
 
                 </div>
             </div>
@@ -404,24 +414,42 @@
     <!-- Footer Start -->
     <div class="container-fluid bg-dark text-secondary mt-3 py-5 px-sm-3 px-md-5">
         <div class="container text-center py-5">
-            <div class="d-flex justify-content-center mb-4">
-                <a class="btn btn-light btn-social mr-2" href="{{ $setting->github_url }}"><i class="fab fa-github"></i></a>
-                <a class="btn btn-light btn-social mr-2" href="{{ $setting->fb_url }}"><i class="fab fa-facebook-f"></i></a>
-                <a class="btn btn-light btn-social mr-2" href="{{ $setting->linkedin_url }}"><i class="fab fa-linkedin-in"></i></a>
+
+            <!-- Social Links -->
+            <div class="d-flex flex-wrap justify-content-center mb-4">
+                <a class="btn btn-light btn-social m-1" href="{{ $setting->github_url }}"><i class="fab fa-github"></i></a>
+                <a class="btn btn-light btn-social m-1" href="{{ $setting->fb_url }}"><i class="fab fa-facebook-f"></i></a>
+                <a class="btn btn-light btn-social m-1" href="{{ $setting->linkedin_url }}"><i class="fab fa-linkedin-in"></i></a>
             </div>
-            <div class="d-flex justify-content-center mb-3">
-                <a class="text-secondary" href="#">Privacy</a>
-                <span class="px-3">|</span>
-                <a class="text-secondary" href="#">Terms</a>
-                <span class="px-3">|</span>
-                <a class="text-secondary" href="#">FAQs</a>
-                <span class="px-3">|</span>
-                <a class="text-secondary" href="#">Help</a>
+
+            <!-- Contact Info -->
+            <div class="d-flex flex-column flex-md-row align-items-center justify-content-center mb-3">
+                <a class="text-secondary m-1">WhatsApp: +63955415702</a>
+                <span class="px-2 d-none d-md-inline">|</span>
+                <a class="text-secondary m-1">Email: ruel14186@gmail.com</a>
+                <span class="px-2 d-none d-md-inline">|</span>
+                <a class="text-secondary m-1">Telegram: @ruelperez23</a>
             </div>
-            <p class="m-0">&copy; <a class="text-secondary font-weight-bold" href="#">ruel-dev.site</a>. All Rights Reserved.
+
+            <!-- Footer Links -->
+{{--            <div class="d-flex flex-column flex-md-row align-items-center justify-content-center mb-3">--}}
+{{--                <a class="text-secondary m-1" href="#">Privacy</a>--}}
+{{--                <span class="px-2 d-none d-md-inline">|</span>--}}
+{{--                <a class="text-secondary m-1" href="#">Terms</a>--}}
+{{--                <span class="px-2 d-none d-md-inline">|</span>--}}
+{{--                <a class="text-secondary m-1" href="#">FAQs</a>--}}
+{{--                <span class="px-2 d-none d-md-inline">|</span>--}}
+{{--                <a class="text-secondary m-1" href="#">Help</a>--}}
+{{--            </div>--}}
+
+            <!-- Copyright -->
+            <p class="m-0">
+                &copy; <a class="text-secondary font-weight-bold" href="#">ruel-dev.site</a>. All Rights Reserved.
             </p>
         </div>
     </div>
+    <!-- Footer End -->
+
     <!-- Footer End -->
 
     <!-- Scroll to Bottom -->
