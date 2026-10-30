@@ -40,6 +40,12 @@ class HomeController extends Controller
         $portfolios = Portfolio::with('category')->orderBy('id', 'desc')->take(12)->get();
         $setting = Setting::first();
 
+//        $portfolios = Portfolio::with('category')
+//            ->where('cat_id', $category->id)
+//            ->orderBy('id', 'desc')
+//            ->take(12)
+//            ->get();
+
         return view('home', compact(
             'user',
             'experiences',

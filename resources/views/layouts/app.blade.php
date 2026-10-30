@@ -44,7 +44,7 @@
                 <a href="#about" class="nav-item nav-link">About</a>
                 <a href="#qualification" class="nav-item nav-link">Quality</a>
                 <a href="#skill" class="nav-item nav-link">Skills</a>
-                <a href="#service" class="nav-item nav-link">Services</a>
+{{--                <a href="#service" class="nav-item nav-link">Services</a>--}}
                 <a href="#portfolio" class="nav-item nav-link">Projects</a>
                 <a href="#testimonial" class="nav-item nav-link">Reviews</a>
                 <a href="#contact" class="nav-item nav-link">Contact</a>

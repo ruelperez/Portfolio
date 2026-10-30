@@ -43,10 +43,17 @@ class PortfolioController extends Controller
     {
         $validated = $request->validated();
 
-        if ($request->hasfile('image')) {
-            $get_file = $request->file('image')->store('images/portfolios');
+//        if ($request->hasfile('image')) {
+//            $get_file = $request->file('image')->store('images/portfolios');
+//            $validated['image'] = $get_file;
+//        }
+
+
+        if ($request->hasFile('image')) {
+            $get_file = $request->file('image')->store('images/portfolios', 'public');
             $validated['image'] = $get_file;
         }
+
 
         Portfolio::create($validated);
 

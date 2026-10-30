@@ -172,25 +172,25 @@
 
 
     <!-- Services Start -->
-    <div class="container-fluid bg-dark pt-5" id="service">
-        <div class="container">
-            <div class="position-relative d-flex align-items-center justify-content-center">
-                <h1 class="display-1 text-uppercase" style="-webkit-text-stroke: 1px black;">Service</h1>
-                <h1 class="position-absolute text-uppercase text-primary">My Services</h1>
-            </div>
-            <div class="row pb-3">
-            @foreach ($services as $service)
-                <div class="col-lg-4 col-md-6 text-center mb-5">
-                    <div class="d-flex align-items-center justify-content-center mb-4">
-                        <i class="{{ $service->icon }} service-icon bg-primary text-white mr-3"></i>
-                        <h4 class="font-weight-bold m-0 text-white-50">{{ $service->name }}</h4>
-                    </div>
-                    <p>{{ $service->description }}</p>
-                </div>
-            @endforeach
-            </div>
-        </div>
-    </div>
+{{--    <div class="container-fluid bg-dark pt-5" id="service">--}}
+{{--        <div class="container">--}}
+{{--            <div class="position-relative d-flex align-items-center justify-content-center">--}}
+{{--                <h1 class="display-1 text-uppercase" style="-webkit-text-stroke: 1px black;">Service</h1>--}}
+{{--                <h1 class="position-absolute text-uppercase text-primary">My Services</h1>--}}
+{{--            </div>--}}
+{{--            <div class="row pb-3">--}}
+{{--            @foreach ($services as $service)--}}
+{{--                <div class="col-lg-4 col-md-6 text-center mb-5">--}}
+{{--                    <div class="d-flex align-items-center justify-content-center mb-4">--}}
+{{--                        <i class="{{ $service->icon }} service-icon bg-primary text-white mr-3"></i>--}}
+{{--                        <h4 class="font-weight-bold m-0 text-white-50">{{ $service->name }}</h4>--}}
+{{--                    </div>--}}
+{{--                    <p>{{ $service->description }}</p>--}}
+{{--                </div>--}}
+{{--            @endforeach--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </div>--}}
     <!-- Services End -->
 
 
@@ -219,7 +219,7 @@
                 @foreach ($portfolios as $portfolio)
                     <div class="col-lg-4 col-md-6 mb-4 portfolio-item {{ Str::slug($portfolio->category->name) }}">
                         <div class="position-relative overflow-hidden mb-2">
-                            <img class="img-fluid rounded w-100" src="{{ asset("storage/$portfolio->image") }}" alt="">
+                            <img class="img-fluid rounded w-100" src="{{ asset("storage/$portfolio->image") }}" alt="Portfolio project image">
                             <div class="portfolio-btn bg-primary d-flex align-items-center justify-content-center">
                                 <a href="{{ asset("storage/$portfolio->image") }}" data-lightbox="portfolio">
                                     <i class="fa fa-plus text-white" style="font-size: 50px;"></i>
