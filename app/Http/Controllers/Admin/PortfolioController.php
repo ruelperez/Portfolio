@@ -41,17 +41,24 @@ class PortfolioController extends Controller
      */
     public function store(PortfolioRequest $request)
     {
+
         $validated = $request->validated();
 
-//        if ($request->hasfile('image')) {
-//            $get_file = $request->file('image')->store('images/portfolios');
-//            $validated['image'] = $get_file;
-//        }
-
-
         if ($request->hasFile('image')) {
-            $get_file = $request->file('image')->store('images/portfolios', 'public');
-            $validated['image'] = $get_file;
+
+            $directory = public_path('storage/images/portfolios');
+
+            // Create directory if it doesn't exist
+            if (!file_exists($directory)) {
+                mkdir($directory, 0755, true);
+            }
+
+            $image = $request->file('image');
+            $imageName = time() . '_' . $image->getClientOriginalName();
+
+            $image->move($directory, $imageName);
+
+            $validated['image'] = 'images/portfolios/' . $imageName;
         }
 
 

@@ -26,14 +26,16 @@ class ContactController extends Controller
         return to_route('home')->with('message', 'Message sent sucessfully !');
     }
 
-    public function submit_review(Request $request){
+
+    public function submit_review(Request $request)
+    {
         try {
             // Validate form data
             $validatedData = $request->validate([
                 'name'     => 'required|string|max:255',
                 'job'      => 'required|string|max:255',
                 'message'  => 'required|string|max:2000',
-                'pic'      => 'nullable|image|mimes:jpg,jpeg,png|max:2048', // 2MB max
+                'pic'      => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
             ], [
                 'name.required'    => 'Your name is required.',
                 'job.required'     => 'Your job title is required.',
@@ -43,30 +45,43 @@ class ContactController extends Controller
                 'pic.max'          => 'The profile picture must not be larger than 2MB.',
             ]);
 
+            // Default profile picture
+            $imagePath = 'storage/images/reviewers/default_profile.jpg';
+
             if ($request->hasFile('pic')) {
-                // Store in storage/app/public/images
-                $get_new_file = $request->file('pic')->store('images/reviewers', 'public');
 
-                Review::create([
-                    'image' => $get_new_file,
-                    'name' => $request->name,
-                    'job' => $request->job,
-                    'description' => $request->message,
-                ]);
+                // Direct public directory
+                $directory = public_path('storage/images/reviewers');
+
+                // Create directory if it doesn't exist
+                if (!file_exists($directory)) {
+                    mkdir($directory, 0755, true);
+                }
+
+                $image = $request->file('pic');
+
+                $imageName = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
+
+                // Move uploaded image directly to public/storage
+                $image->move($directory, $imageName);
+
+                $imagePath = 'images/reviewers/' . $imageName;
             }
-            else{
-                Review::create([
-                    'image' => 'images/reviewers/default_profile.jpg',
-                    'name' => $request->name,
-                    'job' => $request->job,
-                    'description' => $request->message,
-                ]);
-            }
-            return to_route('home')->with('message', 'Review sent sucessfully. Thank You!');
-        }catch (\Exception $e){
-            return to_route('home')->with('failed', 'Failed to send !');
+
+            Review::create([
+                'image'       => $imagePath,
+                'name'        => $validatedData['name'],
+                'job'         => $validatedData['job'],
+                'description' => $validatedData['message'],
+            ]);
+
+            return to_route('home')->with('message', 'Review sent successfully. Thank You!');
+
+        } catch (\Exception $e) {
+
+            return to_route('home')->with('failed', 'Failed to send!');
         }
-
     }
+
 
 }
