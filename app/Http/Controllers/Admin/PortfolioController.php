@@ -88,35 +88,65 @@ class PortfolioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
     public function update(PortfolioRequest $request, Portfolio $portfolio)
     {
         $validated = $request->validated();
 
-        if ($request->hasfile('image')) {
-            Storage::delete($portfolio->image);
-            $get_file = $request->file('image')->store('images/portfolios', 'public');
-            $validated['image'] = $get_file;
+        if ($request->hasFile('image')) {
+
+            $directory = public_path('storage/images/portfolios');
+
+            // Create directory if it doesn't exist
+            if (!file_exists($directory)) {
+                mkdir($directory, 0755, true);
+            }
+
+            // Delete the old image if it exists
+            if (!empty($portfolio->image)) {
+                $oldImage = public_path('storage/' . $portfolio->image);
+
+                if (file_exists($oldImage)) {
+                    unlink($oldImage);
+                }
+            }
+
+            // Upload the new image
+            $image = $request->file('image');
+            $imageName = time() . '_' . $image->getClientOriginalName();
+
+            $image->move($directory, $imageName);
+
+            $validated['image'] = 'images/portfolios/' . $imageName;
         }
 
         $portfolio->update($validated);
 
-        return to_route('admin.portfolio.index')->with('message', 'Portfolio Updated');
+        return to_route('admin.portfolio.index')
+            ->with('message', 'Portfolio Updated');
     }
+
 
     /**
      * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
     public function destroy(Portfolio $portfolio)
     {
-        if ($portfolio->image != null) {
-            Storage::delete($portfolio->image);
+        // Delete the image file if it exists
+        if (!empty($portfolio->image)) {
+
+            $imagePath = public_path('storage/' . $portfolio->image);
+
+            if (file_exists($imagePath)) {
+                unlink($imagePath);
+            }
         }
+
         $portfolio->delete();
+
         return back()->with('message', 'Portfolio Deleted');
     }
+
 
     public function search(Request $request)
     {
@@ -127,8 +157,7 @@ class PortfolioController extends Controller
             ->orWhere('project_url', 'LIKE', "%{$searchedItem}%")
             ->get();
 
-
-        // Return the search view with the resluts compacted
         return view('admin.portfolio.search', compact('portfolios'));
     }
+
 }

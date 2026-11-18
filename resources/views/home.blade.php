@@ -426,7 +426,7 @@
             <div class="d-flex flex-column flex-md-row align-items-center justify-content-center mb-3">
                 <a class="text-secondary m-1">WhatsApp: +63955415702</a>
                 <span class="px-2 d-none d-md-inline">|</span>
-                <a class="text-secondary m-1">Email: ruel14186@gmail.com</a>
+                <a class="text-secondary m-1">Email: karuelflorperezz@gmail.com</a>
                 <span class="px-2 d-none d-md-inline">|</span>
                 <a class="text-secondary m-1">Telegram: @ruelperez23</a>
             </div>

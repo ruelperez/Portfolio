@@ -37,7 +37,7 @@ class HomeController extends Controller
         $services = Service::take(6)->get();
         $categories = Category::all();
         $reviewers = Review::orderBy('id', 'desc')->take(5)->get();
-        $portfolios = Portfolio::with('category')->orderBy('id', 'desc')->take(12)->get();
+        $portfolios = Portfolio::with('category')->orderBy('id', 'desc')->take(100)->get();
         $setting = Setting::first();
 
 //        $portfolios = Portfolio::with('category')
